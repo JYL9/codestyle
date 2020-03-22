@@ -2,56 +2,53 @@ package style;
 
 public class DeckImpl implements Deck {
 	
-	//Instance fields
-	
-	private Card[] newvar;			
+	private Card[] newVar;			
 	private int _num_left_to_deal;
 	
-	
-	
-	//Constructor
 	public DeckImpl() {
 		_num_left_to_deal = 52;
-		newvar = new Card[_num_left_to_deal];
+		newVar = new Card[_num_left_to_deal];
 
 		int cidx = 0;
 		for (Card.Suit s : Card.Suit.values()) {
 			for (int rank = 2; rank <= CardImpl.ACE; rank++) {
-				//System.out.println(rank);
-				newvar[cidx] = new CardImpl(rank, s);
+				newVar[cidx] = new CardImpl(rank, s);
 				cidx += 1;
 			}
 		}
 		
-		for (int i=0; i<newvar.length; i++) {
-			int swap_idx = i + ((int) (Math.random() * (newvar.length - i)));
-			Card tmp = newvar[i];
+		for (int i=0; i<newVar.length; i++) {
+			int swap_idx = i + ((int) (Math.random() * (newVar.length - i)));
+			Card tmp = newVar[i];
 			
-			newvar[i] = newvar[swap_idx];
+			newVar[i] = newVar[swap_idx];
 			
-			newvar[swap_idx] = tmp;
+			newVar[swap_idx] = tmp;
 		}		
 	}
 
-	//Returns boolean
+	// check if the deck could form a hand (has more than 5 cards)
+	// Returns boolean
 	public boolean hasHand() {
 		boolean bool = false;
 		if (_num_left_to_deal >= 5) {
 			bool = true;
 		}
-		return (bool);
+		return bool;
 	}
-
+	
+	//find the next dealt Card array
 	//Returns card
 	public Card dealNextCard() {
 		if (_num_left_to_deal== 0) {
 			throw new RuntimeException();
 		}
-		Card dealtCard = newvar[nextUndealtIndex()];
+		Card dealtCard = newVar[nextUndealtIndex()];
 		_num_left_to_deal -= 1;
 		return dealtCard;
 	}
-
+	
+	//deal a poker hand
 	//Returns PokerHand
 	public PokerHand dealHand() {
 		if (hasHand() == false) {
@@ -67,6 +64,7 @@ public class DeckImpl implements Deck {
 		return h;
 	}	
 
+	//find and remove a specific Card
 	//Returns void
 	public void findAndRemove(Card c) {
 		if (_num_left_to_deal == 0) {
@@ -74,10 +72,10 @@ public class DeckImpl implements Deck {
 		}
 		
 		for (int i=nextUndealtIndex(); i<52; i++) {
-			if (newvar[i].equals(c)) {
-				Card tmp = newvar[i];
-				newvar[i] = newvar[nextUndealtIndex()];
-				newvar[nextUndealtIndex()] = tmp;
+			if (newVar[i].equals(c)) {
+				Card tmp = newVar[i];
+				newVar[i] = newVar[nextUndealtIndex()];
+				newVar[nextUndealtIndex()] = tmp;
 				dealNextCard();
 				return;
 			}
