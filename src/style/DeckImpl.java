@@ -38,7 +38,7 @@ public class DeckImpl implements Deck {
 	}
 	
 	//find the next dealt Card array
-	//Returns card
+	//Returns card or error
 	public Card dealNextCard() {
 		if (_num_left_to_deal== 0) {
 			throw new RuntimeException();
@@ -49,7 +49,7 @@ public class DeckImpl implements Deck {
 	}
 	
 	//deal a poker hand
-	//Returns PokerHand
+	//Returns PokerHand or error
 	public PokerHand dealHand() {
 		if (hasHand() == false) {
 			throw new RuntimeException("Deck does not have enough cards to deal another hand");
@@ -82,6 +82,9 @@ public class DeckImpl implements Deck {
 		}
 		return;
 	}
+	
+	// helper method: find the next undealt card's index
+	// return integer 
 	private int nextUndealtIndex() {
 		int x = 52-_num_left_to_deal;
 		return x;

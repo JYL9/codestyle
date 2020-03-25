@@ -42,7 +42,8 @@ public class PokerHandImpl implements PokerHand {
 	
 	/* test if the Poker hand array has a specific kind of card
 	 * input: Card c
-	 * output: boolean true or false
+	 * output: boolean
+	 * return false or true or error
 	 */
 	public boolean contains(Card c) {
 		if (c == null) {
@@ -60,6 +61,7 @@ public class PokerHandImpl implements PokerHand {
 	/* check if the poker hand is flush which means five cards have same suit
 	 * input: null
 	 * output: boolean 
+	 * return true or false or error
 	 */
 	public boolean isFlush() {
 		for (int i=1; i<5; i++) {
@@ -87,6 +89,9 @@ public class PokerHandImpl implements PokerHand {
 	
 	/* check if the poker hand is The Wheel
 	 * which consists exactly Ace (14), 2, 3, 4, 5
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	private boolean isTheWheel() {
 		
@@ -103,6 +108,9 @@ public class PokerHandImpl implements PokerHand {
 	/* check if the poker hand is OnePair
 	 * when only one pair of cards has the same rank
 	 * and the cards other than this pair don't have same rank
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	public boolean isOnePair() { 
 
@@ -126,6 +134,9 @@ public class PokerHandImpl implements PokerHand {
 	/* check if the poker hand is TwoPair
 	 * when two pairs of cards have the same rank
 	 * and the poker hand is not FullHouse
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	public boolean isTwoPair() {
 		
@@ -143,6 +154,9 @@ public class PokerHandImpl implements PokerHand {
 	 * if there is no same rank card or if the similar pair is index 3 and 4,
 	 * then return false;
 	 * and it is not Four of A kind or Full House
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	public boolean isThreeOfAKind() {
 		int first_pair_idx = find_pair_starting_at(0);
@@ -163,6 +177,9 @@ public class PokerHandImpl implements PokerHand {
 	/* check if the poker hand is Full House
 	 * when card index 0, 1 have same rank and 2, 3, 4 have same rank or
 	 * card index 0, 1, 2 have same rank and 3, 4 have same rank
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	public boolean isFullHouse() {
 		if ((cardArr[0].getRank() == cardArr[1].getRank()) &&
@@ -181,6 +198,9 @@ public class PokerHandImpl implements PokerHand {
 	/* check if the poker hand is Four Of A Kind
 	 * when card index 0, 1, 2, 3 have same rank or
 	 * card index 1, 2, 3, 4 have same rank
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	public boolean isFourOfAKind() {
 		if ((cardArr[0].getRank() == cardArr[1].getRank()) &&
@@ -198,6 +218,9 @@ public class PokerHandImpl implements PokerHand {
 	
 	/* check if the poker hand is Straight Flush
 	 * when it is both Straight and Flush
+	 * input: null
+	 * output: boolean
+	 * return true or false
 	 */
 	public boolean isStraightFlush() {
 		if (isStraight() && isFlush()) {
@@ -212,6 +235,9 @@ public class PokerHandImpl implements PokerHand {
 	 * ThreeOfAKind or FourOfAKind or Full House: rank of the card 2
 	 * Wheel: 5
 	 * other: the rank of the card 4
+	 * input: null
+	 * output: integer
+	 * return the rank of the hand
 	 */
 	public int getHandRank() {
 		if (isOnePair()) {
@@ -230,6 +256,9 @@ public class PokerHandImpl implements PokerHand {
 	/* compare with the other PokerHank about Type value or handRank
 	 * compare HandTypeValue first,
 	 * if equals, then compare HandRank
+	 * input: PokerHand
+	 * output: integer
+	 * return 1, -1, or 0
 	 */
 	public int compareTo(PokerHand other) {
 		if (getHandTypeValue() < other.getHandTypeValue()) {
@@ -247,6 +276,8 @@ public class PokerHandImpl implements PokerHand {
 		}
 	}
 	
+	// get the value of the Hand Type
+	// return integer
 	public int getHandTypeValue() {
 		
 		if (isStraightFlush()) return 9;
@@ -260,8 +291,12 @@ public class PokerHandImpl implements PokerHand {
 		return 1;
 	}
 	
-	// helper method: compare the rank of card at index num to num + 1
-	// if the rank of two card is the same, return the index num
+	/* helper method: compare the rank of card at index num to num + 1
+	* if the rank of two card is the same, return the index num
+	* input: number of the index
+	* output: integer 
+	* return the index of the pair
+	*/
 	private int find_pair_starting_at(int num) {		
 		if (num < 0) {
 			num = 0;

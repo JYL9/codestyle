@@ -11,7 +11,7 @@ public interface Card {
 	// get the string representation of the card's rank and suit
 	String toString();
 	
-	// transform suit name to string form
+	// static method: transform suit name to string form
 	public static String suitToString(Card.Suit s) {
 		switch (s) {
 		case SPADES:

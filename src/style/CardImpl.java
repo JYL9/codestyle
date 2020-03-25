@@ -32,6 +32,7 @@ public class CardImpl implements Card {
 	/* test if the other Card is similar to that card.
 	 * input: other Card
 	 * output: boolean
+	 * return true or false or error
 	 */
 	public boolean equals(Card other) {
 		if (other == null) {
@@ -47,7 +48,8 @@ public class CardImpl implements Card {
 	
 	/* convert the rank and suit information of the card to a string version
 	 * input: null
-	 * output: strings of rank + "of" + strings of suit
+	 * output: strings of rank, strings of suit
+	 * return strings of rank + "of" + strings of suit
 	 */
 	public String toString() {
 		return strings[rank] + " of " + Card.suitToString(suit);
