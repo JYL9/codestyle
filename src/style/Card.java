@@ -1,4 +1,5 @@
 package style;
+
 public interface Card {
 	public static enum Suit {SPADES, HEARTS, DIAMONDS, CLUBS};
 	
@@ -12,8 +13,8 @@ public interface Card {
 	String toString();
 	
 	// static method: transform suit name to string form
-	public static String suitToString(Card.Suit s) {
-		switch (s) {
+	public static String suitToString(Card.Suit suit) {
+		switch (suit) {
 		case SPADES:
 			return "Spades";
 		case HEARTS:
